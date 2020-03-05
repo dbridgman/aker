@@ -1,6 +1,6 @@
-# Form Validation Logic
+# Aker
 
-This form validation logic serves as a basic means of providing reliable form validation logic with as little customisation as possible. The validation hinges heavily on the Constraint validation API, and much of the logic can be setup entirely through the use of HTML5 input attributes. So please ensure you check the input spec [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), in most cases this will be enough for the validation logic needed, you can work with required lengths, patterns, min lengths and more. It's worth noting that the browser knows what type of input it is, so it'll automatically check whether an email address is valid, or if your input is numeric.
+Aker serves as a basic means of providing reliable form validation logic with as little customisation as possible. The validation hinges heavily on the Constraint validation API, and much of the logic can be setup entirely through the use of HTML5 input attributes. So please ensure you check the input spec [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), in most cases this will be enough for the validation logic needed, you can work with required lengths, patterns, min lengths and more. It's worth noting that the browser knows what type of input it is, so it'll automatically check whether an email address is valid, or if your input is numeric.
 
 The validation errors themselves will automatically be created by the script, and can be customised to appear at the top or bottom of the form.
 
@@ -12,62 +12,62 @@ Firstly, setup your form HTML and tag it with an attribute you wish to target th
 
 ```html
 <form class="js-form-validate">
-    <div class="form-group">
-        <label for="first_name">First Name</label>
-        <input
-            type="text"
-            required
-            name="First Name"
-            data-validate="Please enter a name"
-            id="first_name"
-            placeholder="Enter first name"
-        />
-    </div>
+  <div class="form-group">
+    <label for="first_name">First Name</label>
+    <input
+      type="text"
+      required
+      name="First Name"
+      data-validate="Please enter a name"
+      id="first_name"
+      placeholder="Enter first name"
+    />
+  </div>
 
-    <button type="submit">Submit</button>
+  <button type="submit">Submit</button>
 </form>
 ```
 
 Then to trigger the validation run the form validator from your chosen form selector.
 
 ```javascript
-new FormValidation('.js-form-validate');
+new FormValidation(".js-form-validate");
 ```
 
 You then need to ensure you customise your inputs to allow the validator to correctly serve the right validation. Please note to trigger validation correctly you **must** provide the correct attributes. Please see below:
 
--   First up a `name=""` attribute is used to label which input is triggering an error, so please fill this out otherwise it won't be apparent which input is throwing the error in the error notice.
--   `type=""` attribute should be self explanatory - the browser will be able to correctly validate the input depending on the input type, so it should go without saying if you're collecting an email please ensure you use an `type="email"` attribute etc.
--   If a field needs to be filled out please tag it as `required`
--   `data-validate=""` should contain the validation message you wish to show when there is an error, please note that if an input is empty it'll ignore this and serve an empty error message instead.
--   Make use of all the HTML5 input attributes to further customise the validation, so `minlength`, `maxlength` and even `pattern` which will accept regular expressions and allow you to check URLs and all sorts. There are loads of these, and the validator should handle all of these.
--   `data-equals=""` attribute has been created, this attribute accepts a class or an ID of the target input that you want to compare to the one you're adding the equals `data-equals=""` to. This is great for things like password fields in sign up forms, where you might want to confirm whether the user has inputted the same password twice. For example consider the markup below:
+- First up a `name=""` attribute is used to label which input is triggering an error, so please fill this out otherwise it won't be apparent which input is throwing the error in the error notice.
+- `type=""` attribute should be self explanatory - the browser will be able to correctly validate the input depending on the input type, so it should go without saying if you're collecting an email please ensure you use an `type="email"` attribute etc.
+- If a field needs to be filled out please tag it as `required`
+- `data-validate=""` should contain the validation message you wish to show when there is an error, please note that if an input is empty it'll ignore this and serve an empty error message instead.
+- Make use of all the HTML5 input attributes to further customise the validation, so `minlength`, `maxlength` and even `pattern` which will accept regular expressions and allow you to check URLs and all sorts. There are loads of these, and the validator should handle all of these.
+- `data-equals=""` attribute has been created, this attribute accepts a class or an ID of the target input that you want to compare to the one you're adding the equals `data-equals=""` to. This is great for things like password fields in sign up forms, where you might want to confirm whether the user has inputted the same password twice. For example consider the markup below:
 
 ```html
 <div class="form-group">
-    <label for="password">Password</label>
-    <input
-        type="password"
-        name="Password"
-        required
-        class="form-control"
-        id="password-input"
-        placeholder="Enter password"
-    />
+  <label for="password">Password</label>
+  <input
+    type="password"
+    name="Password"
+    required
+    class="form-control"
+    id="password-input"
+    placeholder="Enter password"
+  />
 </div>
 
 <div class="form-group">
-    <label for="password-match">Confirm Password</label>
-    <input
-        type="password"
-        name="Confirm Password"
-        required
-        class="form-control"
-        id="password-confirm"
-        placeholder="Confirm password"
-        data-validate="Your passwords do not match"
-        data-equals="#password-input"
-    />
+  <label for="password-match">Confirm Password</label>
+  <input
+    type="password"
+    name="Confirm Password"
+    required
+    class="form-control"
+    id="password-confirm"
+    placeholder="Confirm password"
+    data-validate="Your passwords do not match"
+    data-equals="#password-input"
+  />
 </div>
 ```
 
@@ -105,46 +105,46 @@ The form validator accepts an options object, which will allow you to customise 
 
 ```javascript
 const options = {
-    // Accepts Boolean value, true attaches notifications at the end of the form, false at the top.
-    appendNotificationsBottom: false,
-    // Error container class
-    errorContainerClass: 'error-list',
-    // Error Title - The title for the error message when a form fails to validate
-    errorTitleText: 'Please resolve the errors below:',
-    // Error Title Class - Allows a custom class for the error title
-    errorTitleClass: 'error-list-title',
-    // Empty Input Error - The message to display for empty inputs
-    emptyInputError: 'Please fill out this field',
-    // Error list item class - Custom class for an error list item
-    errorListItemClass: 'error-list-item',
-    // Ajax Submit - Switches AJAX on/off
-    ajax: false,
+  // Accepts Boolean value, true attaches notifications at the end of the form, false at the top.
+  appendNotificationsBottom: false,
+  // Error container class
+  errorContainerClass: "error-list",
+  // Error Title - The title for the error message when a form fails to validate
+  errorTitleText: "Please resolve the errors below:",
+  // Error Title Class - Allows a custom class for the error title
+  errorTitleClass: "error-list-title",
+  // Empty Input Error - The message to display for empty inputs
+  emptyInputError: "Please fill out this field",
+  // Error list item class - Custom class for an error list item
+  errorListItemClass: "error-list-item",
+  // Ajax Submit - Switches AJAX on/off
+  ajax: false,
 
-    // Ajax Success Container Custom Class
-    ajaxSuccessContainerClass: 'success-message',
-    // Ajax Success Title - Title for the AJAX success message
-    ajaxSuccessTitle: 'Message Sent',
-    // Ajax Sucess Title Custom Class - Custom class for the AJAX success title
-    ajaxSuccessTitleClass: 'ajax-success-title',
-    // Ajax Success Message - Message for the AJAX sucess
-    ajaxSuccessMessage: 'Your details have been successfully sent.',
-    // Ajax Success Message Custom Class - AJAX message text class
-    ajaxSuccessMessageClass: 'ajax-success-message',
+  // Ajax Success Container Custom Class
+  ajaxSuccessContainerClass: "success-message",
+  // Ajax Success Title - Title for the AJAX success message
+  ajaxSuccessTitle: "Message Sent",
+  // Ajax Sucess Title Custom Class - Custom class for the AJAX success title
+  ajaxSuccessTitleClass: "ajax-success-title",
+  // Ajax Success Message - Message for the AJAX sucess
+  ajaxSuccessMessage: "Your details have been successfully sent.",
+  // Ajax Success Message Custom Class - AJAX message text class
+  ajaxSuccessMessageClass: "ajax-success-message",
 
-    // Ajax Error Container Custom Class
-    ajaxErrorContainerClass: 'error-list',
-    // Ajax Error Title - Title for AJAX error message
-    ajaxErrorTitle: 'Error - Submission Failed',
-    // Ajax Error Title Custom Class - custom class for the AJAX error title
-    ajaxErrorTitleClass: 'error-list-title',
-    // Ajax Error Message - Text for the AJAX error message
-    ajaxErrorMessage:
-        'Ooops, looks like there was a problem! Please try again later, or contact us if the problem persists.',
-    // Ajax Error Message Custom Class - Custom class for the AJAX error message
-    ajaxErrorMessageClass: 'error-list-item'
+  // Ajax Error Container Custom Class
+  ajaxErrorContainerClass: "error-list",
+  // Ajax Error Title - Title for AJAX error message
+  ajaxErrorTitle: "Error - Submission Failed",
+  // Ajax Error Title Custom Class - custom class for the AJAX error title
+  ajaxErrorTitleClass: "error-list-title",
+  // Ajax Error Message - Text for the AJAX error message
+  ajaxErrorMessage:
+    "Ooops, looks like there was a problem! Please try again later, or contact us if the problem persists.",
+  // Ajax Error Message Custom Class - Custom class for the AJAX error message
+  ajaxErrorMessageClass: "error-list-item"
 };
 
-new FormValidation('.js-form-validate', options);
+new FormValidation(".js-form-validate", options);
 ```
 
 It's worth noting that all options that adjust class attributes can accept multiple values, e.g `errorTitleClass: 'error-list-title error-list-title--fancy'`. Just be sure to seperate each class with a space (obviously xD).
@@ -180,15 +180,15 @@ The core of the AJAX is being managed by Axios, and the form data is then serial
 AJAX calls can be customised to run an optional callback function after a forms submitted, please see below for an example:
 
 ```javascript
-const testCallback = () => console.log('test is working wooooooo');
+const testCallback = () => console.log("test is working wooooooo");
 
 const form = new FormValidation(
-    '.js-form-validate',
-    {
-        customNotifications: false,
-        ajax: true
-    },
-    testCallback
+  ".js-form-validate",
+  {
+    customNotifications: false,
+    ajax: true
+  },
+  testCallback
 );
 
 form.init();
@@ -224,4 +224,4 @@ At the moment`createResponseSuccessBlock()` and `createResponseErrorBlock()` wil
 
 ## TODOS
 
--   [ ] Testing on EVERY input type
+- [ ] Testing on EVERY input type
