@@ -31,7 +31,7 @@ Firstly, setup your form HTML and tag it with an attribute you wish to target th
 Then to trigger the validation run the form validator from your chosen form selector.
 
 ```javascript
-new FormValidation(".js-form-validate");
+new Aker(".js-form-validate");
 ```
 
 You then need to ensure you customise your inputs to allow the validator to correctly serve the right validation. Please note to trigger validation correctly you **must** provide the correct attributes. Please see below:
