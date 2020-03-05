@@ -154,7 +154,7 @@ It's worth noting that all options that adjust class attributes can accept multi
 AJAX functionality has been added to the form validation, this can be initialized via a boolean value provided to the settings object when calling in the form validation:
 
 ```javascript
-const form = new FormValidation(
+const form = new Aker(
         '.js-form-validate',
         {
             ajax: true
@@ -182,7 +182,7 @@ AJAX calls can be customised to run an optional callback function after a forms 
 ```javascript
 const testCallback = () => console.log("test is working wooooooo");
 
-const form = new FormValidation(
+const form = new Aker(
   ".js-form-validate",
   {
     customNotifications: false,
@@ -194,7 +194,7 @@ const form = new FormValidation(
 form.init();
 ```
 
-So above I've made a dumb function that will console log out 'test is working woooooo', I'm then parsing this function into the `FormValidation` as the third parameter. The form validator will then run this function when the form is submitted.
+So above I've made a dumb function that will console log out 'test is working woooooo', I'm then parsing this function into the `Aker` as the third parameter. The form validator will then run this function when the form is submitted.
 
 ## Customising The AJAX
 
