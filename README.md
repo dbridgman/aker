@@ -15,11 +15,11 @@ Firstly, setup your form HTML and tag it with an attribute you wish to target th
   <div class="form-group">
     <label for="first_name">First Name</label>
     <input
+      id="first_name"
       type="text"
       required
-      name="First Name"
+      name="first_name"
       data-validate="Please enter a name"
-      id="first_name"
       placeholder="Enter first name"
     />
   </div>
@@ -47,26 +47,26 @@ You then need to ensure you customise your inputs to allow the validator to corr
 <div class="form-group">
   <label for="password">Password</label>
   <input
+    id="password"
     type="password"
-    name="Password"
+    name="password"
     required
     class="form-control"
-    id="password-input"
     placeholder="Enter password"
   />
 </div>
 
 <div class="form-group">
-  <label for="password-match">Confirm Password</label>
+  <label for="password_confirm">Confirm Password</label>
   <input
+    id="password_confirm"
     type="password"
-    name="Confirm Password"
+    name="password_confirm"
     required
     class="form-control"
-    id="password-confirm"
     placeholder="Confirm password"
     data-validate="Your passwords do not match"
-    data-equals="#password-input"
+    data-equals="#password"
   />
 </div>
 ```
@@ -141,7 +141,7 @@ const options = {
   ajaxErrorMessage:
     "Ooops, looks like there was a problem! Please try again later, or contact us if the problem persists.",
   // Ajax Error Message Custom Class - Custom class for the AJAX error message
-  ajaxErrorMessageClass: "error-list-item"
+  ajaxErrorMessageClass: "error-list-item",
 };
 
 new FormValidation(".js-form-validate", options);
@@ -186,7 +186,7 @@ const form = new Aker(
   ".js-form-validate",
   {
     customNotifications: false,
-    ajax: true
+    ajax: true,
   },
   testCallback
 );
